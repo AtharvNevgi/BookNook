@@ -7,7 +7,8 @@ const cookieParser = require("cookie-parser");
 const app = express();
 
 // routes
-const {authRouter} = require("../routes/authRouter");
+const {authRouter} = require("../routes/userAuthRouter");
+const {adminRouter} = require("../routes/adminAuthRouter");
 
 // middleware
 app.use(express.json())
@@ -32,6 +33,9 @@ app.get("/", (req, res) => {
 
 // user route
 app.use("/user", authRouter);
+
+// admin route
+app.use("/admin", adminRouter);
 
 app.listen(port, () => {
     console.log(`Listening on Port:${port}`);

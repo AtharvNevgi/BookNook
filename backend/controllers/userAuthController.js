@@ -3,11 +3,11 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs")
 
 const getUserlogin = (req, res) => {
-    res.render("auth/userlogin");
+    res.render("users/userlogin");
 }
 
 const getUserRegister = (req, res) => {
-    res.render("auth/userRegister")
+    res.render("users/userRegister")
 }
 
 const postUserRegister = async (req, res) => {
@@ -26,7 +26,7 @@ const postUserRegister = async (req, res) => {
                 password: password,
             })
             const registered = await register.save();
-            res.status(200).render("auth/userlogin");
+            res.status(200).render("users/userlogin");
         }
     }
     catch(err){

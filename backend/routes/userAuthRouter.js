@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const auth = require("../middleware/auth")
-const {getUserlogin, getUserRegister, postUserRegister, postUserLogin, getUserDashboard, getUserLogout} = require("../controllers/authController");
+const auth = require("../middleware/userAuth")
+const {getUserlogin, getUserRegister, postUserRegister, postUserLogin, getUserDashboard, getUserLogout} = require("../controllers/userAuthController");
 const authRouter = express.Router();
 
 
