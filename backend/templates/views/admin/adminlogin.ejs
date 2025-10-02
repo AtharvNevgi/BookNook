@@ -4,8 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <%- include('../../partials/header')%>
 </head>
+<style>
+    body{
+        background-color:rgb(112, 129, 226);
+    }
+</style>
 <body>
-    <h1>admin login</h1>
+<%- include('../../partials/navbar')%>
+    <div class="container mt-5" style="max-width: 400px; background-color: #f8f9fa; padding: 20px; border-radius: 8px;">
+    <h3 class="text-center mb-4">Admin Login</h3>
+        <form action="/admin/adminlogin" method="POST">
+            <div class="mb-3">
+            <label for="email" class="form-label">Email *</label>
+            <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="mb-3">
+            <label for="password" class="form-label">Password *</label>
+            <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div class="text-center">
+            <button type="submit" class="btn btn-primary">Sign In</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
