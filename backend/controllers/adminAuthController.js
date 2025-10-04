@@ -7,36 +7,40 @@ const getAdminlogin = (req, res) => {
 }
 
 const postAdminlogin = async (req, res) => {
-    try{
+    try {
         const email = req.body.email;
         const password = req.body.password;
 
-        const user = await User.findOne({email:email});
+        const user = await User.findOne({ email: email });
 
-        if(!user){
+        if (!user) {
             res.send("No Such User Found");
         }
-        if(user.role !== "admin"){
+        if (user.role !== "admin") {
             console.log(user.role)
             res.send("Not a admin login please login through user login or register");
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
 
-        if(isMatch){
+        if (isMatch) {
             res.cookie("userId", user.id.toString(), {
                 maxAge: 1000 * 60 * 600,
             })
-            res.send("Hello Admin");
+            res.redirect("adminDashboard");
         }
-        else{
+        else {
             res.send("Invalid Login credentials");
         }
     }
-    catch(err){
+    catch (err) {
         res.status(404).send("Invalid Email", err);
         console.log(err)
     }
 }
 
-module.exports = {getAdminlogin, postAdminlogin};
+const getAdminDashboard = async (req, res) => {
+    res.render("admin/adminDashboard", {user: req.user.firstname});
+}
+
+module.exports = { getAdminlogin, postAdminlogin, getAdminDashboard };
