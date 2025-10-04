@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <%- include('../../partials/header')%>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Login | BookNook</title>
+  <%- include('../../partials/header')%>
 </head>
-<style>
-    body{
-        background-color:brown;
-    }
-</style>
-<body>
-<%- include('../../partials/navbar')%>
-    <div class="container mt-5" style="max-width: 400px; background-color: #f8f9fa; padding: 20px; border-radius: 8px;">
-    <h3 class="text-center mb-4">Login</h3>
-        <form action="/user/userlogin" method="POST">
-            <div class="mb-3">
-            <label for="email" class="form-label">Email *</label>
-            <input type="email" class="form-control" id="email" name="email">
-            </div>
-            <div class="mb-3">
-            <label for="password" class="form-label">Password *</label>
-            <input type="password" class="form-control" id="password" name="password">
-            </div>
-            <div class="text-center">
-            <button type="submit" class="btn btn-primary">Sign In</button>
-            </div>
-        </form>
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <%- include('../../partials/navbar')%>
+
+  <!-- Login Form -->
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
+      <h3 class="text-center mb-4">Login</h3>
+      <form action="/user/userlogin" method="POST">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email *</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password *</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary">Sign In</button>
+        </div>
+      </form>
+      <div class="text-center mt-3">
+        <small>Don't have an account? <a href="/user/userRegister">Register</a></small>
+      </div>
     </div>
+  </div>
+
+  <%- include('../../partials/footer')%>
+
 </body>
 </html>

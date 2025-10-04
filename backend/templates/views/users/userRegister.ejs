@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -55,6 +55,72 @@
         </div>
     </form>
     </div>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration | BookNook</title>
+  <%- include('../../partials/header')%>
+</head>
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <%- include('../../partials/navbar')%>
+
+  <!-- Registration Form -->
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="card shadow-sm p-4" style="max-width: 600px; width: 100%;">
+      <h3 class="text-center mb-4">Create Your Account</h3>
+      <form action="/user/userRegister" method="POST">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <input placeholder="First Name *" type="text" class="form-control" id="firstName" name="firstname" required>
+          </div>
+          <div class="col-md-6">
+            <input placeholder="Last Name *" type="text" class="form-control" id="lastName" name="lastname" required>
+          </div>
+          <div class="col-md-6">
+            <input placeholder="Your Email *" type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="col-md-6 d-flex align-items-center justify-content-around">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+              <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+              <label class="form-check-label" for="female">Female</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input placeholder="Your Phone *" type="tel" class="form-control" id="phone" name="phone" required>
+          </div>
+          <div class="col-md-6">
+            <input placeholder="Your Age *" type="number" class="form-control" id="age" name="age" required>
+          </div>
+          <div class="col-md-6">
+            <input placeholder="Password *" type="password" class="form-control" id="password" name="password" required>
+          </div>
+          <div class="col-md-6">
+            <input placeholder="Confirm Password *" type="password" class="form-control" id="confirmPassword" name="confirmpassword" required>
+          </div>
+        </div>
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-success">Register</button>
+        </div>
+      </form>
+      <div class="text-center mt-3">
+        <small>Already have an account? <a href="/user/userlogin">Login</a></small>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../../partials/footer')%>
 
 </body>
 </html>

@@ -43,4 +43,9 @@ const getAdminDashboard = async (req, res) => {
     res.render("admin/adminDashboard", {user: req.user.firstname});
 }
 
-module.exports = { getAdminlogin, postAdminlogin, getAdminDashboard };
+const getAdminLogout = async (req, res) => {
+    res.clearCookie("userId");
+    res.redirect("/admin");
+}
+
+module.exports = { getAdminlogin, postAdminlogin, getAdminDashboard, getAdminLogout };
