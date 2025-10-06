@@ -1,6 +1,9 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("../models/userModel")
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
 
 const getAdminlogin = (req, res) => {
     res.render("admin/adminlogin");
@@ -24,9 +27,18 @@ const postAdminlogin = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (isMatch) {
-            res.cookie("userId", user.id.toString(), {
-                maxAge: 1000 * 60 * 600,
+            const token = jwt.sign(
+                {id:user._id, role:user.role},
+                JWT_SECRET,
+                {expiresIn:JWT_EXPIRES_IN}
+            );
+
+            res.cookie("token", token, {
+                httpOnly:true,
+                secure:false,
+                maxAge: 24* 60 * 60 * 1000
             })
+
             res.redirect("adminDashboard");
         }
         else {
@@ -40,7 +52,14 @@ const postAdminlogin = async (req, res) => {
 }
 
 const getAdminDashboard = async (req, res) => {
-    res.render("admin/adminDashboard", {user: req.user.firstname});
+    try{
+        const user = await User.findById(req.user.id);
+        res.render("admin/adminDashboard", {user: user.firstname});
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).send("Error Loading Dashboard");
+    }
 }
 
 const getAdminLogout = async (req, res) => {

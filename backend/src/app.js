@@ -3,6 +3,7 @@ require("../config/db");
 const path = require("path");
 const ejs = require("ejs")
 const port = process.env.PORT || 3000;
+require("dotenv").config({quiet:true});
 const cookieParser = require("cookie-parser");
 const app = express();
 

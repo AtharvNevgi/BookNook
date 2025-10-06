@@ -1,6 +1,9 @@
 const express = require("express");
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
 
 const getUserlogin = (req, res) => {
     res.render("users/userlogin");
@@ -48,9 +51,19 @@ const postUserLogin = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
 
         if(isMatch){
-            res.cookie("userId", user.id.toString(), {
-                maxAge: 1000 * 60 * 600,
-            });
+            
+            const token = jwt.sign(
+                {id:user._id, role: user.role},
+                JWT_SECRET,
+                {expiresIn: JWT_EXPIRES_IN}
+            );
+
+            res.cookie("token", token, {
+                httpOnly:true,
+                secure:false,
+                maxAge: 24 * 60 * 60 * 1000 
+            })
+
             res.redirect("dashboard");
         }
         else{
@@ -64,11 +77,18 @@ const postUserLogin = async (req, res) => {
 }
 
 const getUserDashboard = async(req, res) => {
-    res.render("dashboard", {user: req.user.firstname});
+    try{
+        const user = await User.findById(req.user.id);
+        res.render("dashboard", {user: user.firstname});
+    }
+    catch{
+        console.log(err);
+        res.status(500).send("Error Loading Dashboard")
+    }
 }
 
 const getUserLogout = (req, res) => {
-    res.clearCookie("userId");
+    res.clearCookie("token");
     res.redirect("/user/userlogin");
 }
 

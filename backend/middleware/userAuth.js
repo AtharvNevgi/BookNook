@@ -1,21 +1,18 @@
 const User = require("../models/userModel");
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const auth = async (req, res, next) => {
+
+    const token = req.cookies.token || req.headers["authorization"];
+
+    if(!token){
+        return res.redirect("/user/userlogin");
+    }
+
     try{
-        const userId = req.cookies.userId;
-
-        if(!userId){
-            return res.status(401).json({msg: "Not Authenticated"});
-        }
-
-        const user = await User.findById(userId);
-
-        if(!user){
-            return res.status(401).json({msg: "User not found"});
-        }
-
-        req.user = user;
-
+        const decoded = jwt.verify(token, JWT_SECRET);
+        req.user = decoded;
         next();
     }
     catch(err){
