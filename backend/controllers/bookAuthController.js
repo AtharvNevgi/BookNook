@@ -7,17 +7,20 @@ const getAddBook = (req, res) => {
 
 const postBook = async (req, res) => {
     try {
-        const user = await User.findById(req.user.id)
-        console.log(user)
+        // const user = await User.findById(req.user.id)
+        // console.log(user.id)
         const addBooks = new Books({
-            image: req.body.image,
             title: req.body.title,
-            discription: req.body.discription,
+            author: req.body.author,
             price: req.body.price,
-            userid: req.user.id
+            description: req.body.description,
+            condition: req.body.condition,
+            category: req.body.category,
+            image: req.body.image,
+            userId: req.user.id
         })
         const booksAdded = await addBooks.save();
-        res.status(200).send("books added");
+        res.redirect("/user/dashboard");
     }
     catch (err) {
         res.status(400).send(err);

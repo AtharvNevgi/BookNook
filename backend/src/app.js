@@ -11,6 +11,8 @@ const app = express();
 const {authRouter} = require("../routes/userAuthRouter");
 const {adminRouter} = require("../routes/adminAuthRouter");
 const {booksRouter} = require("../routes/booksRouter");
+
+// authentication
 const auth = require("../middleware/userAuth");
 
 // middleware
@@ -41,7 +43,7 @@ app.use("/user", authRouter);
 app.use("/admin", adminRouter);
 
 // books route
-app.use("/books",auth, booksRouter);
+app.use("/books", auth, booksRouter);
 
 app.listen(port, () => {
     console.log(`Listening on Port:${port}`);

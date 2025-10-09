@@ -1,20 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <%- include('../../partials/header')%>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Book | BookNook</title>
+  <%- include('../../partials/header')%>
 </head>
+<body class="bg-light">
 
-<body>
-    <h1>Book Add Forms</h1>
-    <form action="">
-        <label for="">Image</label>
-        <input type="text">
-    </form>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="/user/dashboard">📚 BookNook</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="/profile">Profile</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link active" href="/books/addBook">Add Book</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="/my-books">My Listings</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-danger" href="/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Add Book Form -->
+  <div class="container my-5">
+    <div class="card shadow-sm p-4" style="max-width: 700px; margin: auto;">
+      <h3 class="text-center mb-4">Add a New Book</h3>
+
+      <form action="/books/addBook/submit" method="POST">
+        <div class="mb-3">
+          <label for="title" class="form-label">Book Title *</label>
+          <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="author" class="form-label">Author *</label>
+          <input type="text" class="form-control" id="author" name="author" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="price" class="form-label">Price (₹)*</label>
+          <input type="number" class="form-control" id="price" name="price" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="category" class="form-label">Category *</label>
+          <input type="text" class="form-control" id="category" name="category" placeholder="e.g. Fiction, Programming, Science" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="condition" class="form-label">Condition *</label>
+          <select class="form-select" id="condition" name="condition" required>
+            <option value="">Select Condition</option>
+            <option value="New">New</option>
+            <option value="Like New">Like New</option>
+            <option value="Good">Good</option>
+            <option value="Fair">Fair</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="image" class="form-label">Image URL *</label>
+          <input type="text" class="form-control" id="image" name="image" placeholder="Paste image link here" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description *</label>
+          <textarea class="form-control" id="description" name="description" rows="4" placeholder="Briefly describe your book..." required></textarea>
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-success btn-lg">Add Book</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
     <%- include('../../partials/footer')%>
 </body>
-
 </html>
