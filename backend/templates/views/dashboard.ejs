@@ -40,7 +40,7 @@
   <!-- Main Section -->
   <div class="container my-5">
     <div class="text-center mb-4">
-      <h2>Welcome, <%= user %> 👋</h2>
+      <h2>Welcome, <%= user.firstname %> 👋</h2>
       <p class="text-muted">Manage your books or explore what others are selling.</p>
     </div>
 
@@ -52,17 +52,27 @@
     </div>
 
     <!-- Books Section (Placeholder for now) -->
+  <div class="container mt-4">
     <div class="row">
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm">
-          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Book Image">
-          <div class="card-body">
-            <h5 class="card-title">Book Title Example</h5>
-            <p class="card-text text-muted">Short book description...</p>
-            <a href="#" class="btn btn-outline-primary btn-sm">View Details</a>
+      <% book.forEach(book => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm h-100">
+            <img src="<%= book.image %>" class="card-img-top" alt="<%= book.title %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= book.title %></h5>
+              <p class="card-text text-muted">
+                <%= book.description.substring(0, 80) %>...
+              </p>
+              <a href="/books/<%= book._id %>" class="btn btn-outline-primary btn-sm">
+                View Details
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      <% }) %>
+    </div>
+  </div>
+
 
       <!-- Duplicate this card later dynamically using EJS loop -->
     </div>

@@ -1,5 +1,6 @@
 const express = require("express");
 const User = require("../models/userModel");
+const Book = require("../models/booksModel");
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -79,9 +80,11 @@ const postUserLogin = async (req, res) => {
 const getUserDashboard = async(req, res) => {
     try{
         const user = await User.findById(req.user.id);
-        res.render("dashboard", {user: user.firstname});
+        // const book = await Book.find({userId : req.user.id});
+        const book = await Book.find();
+        res.render("dashboard", {user, book});
     }
-    catch{
+    catch(err){
         console.log(err);
         res.status(500).send("Error Loading Dashboard")
     }
