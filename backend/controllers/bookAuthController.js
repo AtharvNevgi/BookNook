@@ -28,4 +28,15 @@ const postBook = async (req, res) => {
     }
 }
 
-module.exports = { getAddBook, postBook }
+const getUserBooks = async (req, res) => {
+    try{
+        const books = await Books.find({userId: req.user.id});
+        res.render("books/myBooks", {books});
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).send("Error Loading My-Books")
+    }
+}
+
+module.exports = { getAddBook, postBook, getUserBooks }
