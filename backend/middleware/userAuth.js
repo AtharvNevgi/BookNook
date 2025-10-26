@@ -17,7 +17,8 @@ const auth = async (req, res, next) => {
     }
     catch(err){
         console.error(err);
-        res.status(500).json({msg: "Internal server error"});
+        // res.status(500).json({msg: "Internal server error"});
+        res.render("loggedOut");
     }
 }
 

@@ -90,10 +90,21 @@ const getUserDashboard = async(req, res) => {
     }
 }
 
+const getUserProfile = async(req, res) => {
+    try{
+        const user = await User.findById(req.user.id);
+        res.send("this is User Profile of "+ user.firstname);
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).send("Error loading Profile page");
+    }
+}
+
 const getUserLogout = (req, res) => {
     res.clearCookie("token");
     res.redirect("/user/userlogin");
 }
 
 
-module.exports = {getUserlogin, getUserRegister, postUserRegister, postUserLogin, getUserDashboard, getUserLogout}
+module.exports = {getUserlogin, getUserRegister, postUserRegister, postUserLogin, getUserDashboard, getUserProfile, getUserLogout}

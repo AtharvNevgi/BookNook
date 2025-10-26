@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const auth = require("../middleware/userAuth")
-const {getUserlogin, getUserRegister, postUserRegister, postUserLogin, getUserDashboard, getUserLogout} = require("../controllers/userAuthController");
+const {getUserlogin, getUserRegister, postUserRegister, postUserLogin, getUserDashboard, getUserProfile, getUserLogout} = require("../controllers/userAuthController");
 const authRouter = express.Router();
 
 
@@ -14,6 +14,8 @@ authRouter.post("/userRegister", postUserRegister);
 authRouter.post("/userlogin", postUserLogin);
 
 authRouter.get("/dashboard", auth, getUserDashboard);
+
+authRouter.get("/profile", auth, getUserProfile);
 
 authRouter.get("/logout", getUserLogout);
 
