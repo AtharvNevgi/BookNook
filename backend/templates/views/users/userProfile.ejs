@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <%- include('../../partials/header')%>
+</head>
+
+<body>
+  <%- include('../../partials/loggedIn/navbar')%>
+
+  <h1>First Name : <%- user.firstname %></h1>
+  <h1>Last Name : <%- user.lastname %></h1>
+  <h1>Age : <%- user.age %></h1>
+  <h1>Email : <%- user.email %></h1>
+  <h1>Phone Number : <%- user.phone %></h1>
+
+  <%- include('../../partials/footer')%>
+</body>
+
+</html>

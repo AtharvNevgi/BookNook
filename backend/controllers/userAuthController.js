@@ -93,7 +93,7 @@ const getUserDashboard = async(req, res) => {
 const getUserProfile = async(req, res) => {
     try{
         const user = await User.findById(req.user.id);
-        res.send("this is User Profile of "+ user.firstname);
+        res.render("users/userProfile",{user});
     }
     catch(err){
         console.log(err);
