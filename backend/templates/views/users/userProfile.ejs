@@ -1,23 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Profile</title>
+  <title>My Profile | BookNook</title>
   <%- include('../../partials/header')%>
-</head>
 
-<body>
+</head>
+<body class="bg-light">
+  
+  <!-- Navbar -->
   <%- include('../../partials/loggedIn/navbar')%>
 
-  <h1>First Name : <%- user.firstname %></h1>
-  <h1>Last Name : <%- user.lastname %></h1>
-  <h1>Age : <%- user.age %></h1>
-  <h1>Email : <%- user.email %></h1>
-  <h1>Phone Number : <%- user.phone %></h1>
 
+  <!-- Profile Section -->
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <!-- Profile Card -->
+        <div class="card shadow-sm p-4">
+          <div class="d-flex align-items-center mb-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile"
+              class="rounded-circle me-3" width="100" height="100">
+            <div>
+              <h4 class="mb-0"><%- user.firstname %> <%- user.lastname %></h4>
+              <p class="text-muted mb-1"><%- user.email %></p>
+            </div>
+          </div>
+
+          <!-- Basic Info -->
+          <h5 class="fw-bold border-bottom pb-2">Basic Information</h5>
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <p><strong>Gender:</strong> <%- user.gender %></p>
+              <p><strong>Phone:</strong> <%- user.phone %></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Age:</strong> <%- user.age %></p>
+              <p><strong>Email:</strong> <%- user.email %></p>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <h5 class="fw-bold border-bottom pb-2 mt-4">Your Activity</h5>
+          <div class="row text-center mt-3">
+            <div class="col-md-6 mb-3">
+              <div class="border rounded py-3 bg-light">
+
+                <p class="text-muted mb-0">Books Listed</p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="border rounded py-3 bg-light">
+
+                <p class="text-muted mb-0">Books Sold</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="d-flex justify-content-end mt-4">
+            <a href="/books/addBook" class="btn btn-primary me-2">+ Add New Book</a>
+            <a href="/profile/edit" class="btn btn-outline-secondary">Edit Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <%- include('../../partials/footer')%>
 </body>
-
 </html>

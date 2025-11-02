@@ -39,4 +39,53 @@ const getUserBooks = async (req, res) => {
     }
 }
 
-module.exports = { getAddBook, postBook, getUserBooks }
+const getEditBook = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const book = await Books.findById({_id:id});
+        // console.log(book.title);
+        res.render("books/editBook", {book});
+    } 
+    catch(err){
+        res.status(500).send(err);
+    }
+}
+
+const updateUserBook = async (req, res) => {
+    try{
+        const _id = req.params.id;
+        const updateUserBook = await Books.findByIdAndUpdate(_id, req.body, {new:true});
+        res.redirect("/books/myBooks");
+    }
+    catch(err){
+        res.status(500).send(err);
+    }
+}
+
+const deleteUserBook = async (req, res) => {
+    try{
+        const deleteUserBook = await Books.findByIdAndDelete(req.params.id);
+        if(!req.params.id){
+            res.status(400).send();
+        }
+        res.redirect("/books/myBooks");
+    }
+    catch(err){
+        res.status(500).send(err);
+    }
+}
+
+const getBookDetails = async (req, res) => {
+    try{
+        const id = req.params.id;
+        const book = await Books.findById({_id:id});
+        const userId = book.userId;
+        const user = await User.findById({_id:userId})
+        res.render("books/bookDetails", {book, user})
+    }
+    catch(err){
+        res.status(500).send(err);
+    }
+}
+
+module.exports = { getAddBook, postBook, getUserBooks, getEditBook, updateUserBook, deleteUserBook, getBookDetails }

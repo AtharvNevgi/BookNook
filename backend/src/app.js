@@ -2,6 +2,7 @@ const express = require("express");
 require("../config/db");
 const path = require("path");
 const ejs = require("ejs")
+const methodOverride  = require("method-override");
 const port = process.env.PORT || 3000;
 require("dotenv").config({quiet:true});
 const cookieParser = require("cookie-parser");
@@ -19,6 +20,7 @@ const auth = require("../middleware/userAuth");
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+app.use(methodOverride("_method"));
 
 // static paths
 const static_path = path.join(__dirname, "../public");
