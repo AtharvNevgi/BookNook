@@ -34,7 +34,7 @@
       <% book.forEach(book => { %>
         <div class="col-md-4 mb-4">
           <div class="card shadow-sm h-100">
-            <img src="<%= book.image %>" class="card-img-top" alt="<%= book.title %>">
+            <img src="<%= book.image %>" class="img-fluid rounded" style="max-height: 500px; object-fit: cover;" alt="<%= book.title %>">
             <div class="card-body">
               <h5 class="card-title"><%= book.title %></h5>
               <p class="card-text text-muted">
