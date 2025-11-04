@@ -26,7 +26,17 @@
             <div class="card shadow-sm h-100">
               <img src="<%= book.image %>" class="card-img-top" alt="<%= book.title %>" style="height: 230px; object-fit: cover;">
               <div class="card-body d-flex flex-column">
-                <h5 class="card-title"><%= book.title %></h5>
+                <div class="d-flex justify-content-between">
+                  <h5 class="card-title flex-column"><%= book.title %></h5>
+                  <a href="books/myBooks/public">
+                      <div class="form-check form-switch me-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked
+                          onchange="changeInput(event)"
+                        >
+                      <label class="form-check-label" for="switchCheckChecked">Public</label>
+                    </div>
+                  </a>
+                </div>
                 <p class="card-text text-muted small mb-1"><strong>Author:</strong> <%= book.author %></p>
                 <p class="card-text text-muted small"><strong>Condition:</strong> <%= book.condition %></p>
                 <p class="text-success fw-semibold mt-2">₹ <%= book.price %></p>
@@ -53,6 +63,14 @@
 
   <!-- Footer -->
   <%- include('../../partials/footer')%>
-
+<script>
+  function changeInput(e){
+    // console.log("Public")
+    // console.log(e)
+    // let a = document.getElementById('switchCheckChecked').checked
+    // console.log(a)
+    window.location.href="/books/myBooks/public";
+  }
+</script>
 </body>
 </html>

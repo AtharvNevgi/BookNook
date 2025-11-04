@@ -88,4 +88,15 @@ const getBookDetails = async (req, res) => {
     }
 }
 
-module.exports = { getAddBook, postBook, getUserBooks, getEditBook, updateUserBook, deleteUserBook, getBookDetails }
+const bookStatus = async (req, res) => {
+    try{
+        const status = req.params.status;
+        console.log(status);
+        res.redirect("/books/myBooks")
+    }
+    catch(err){
+
+    }
+}
+
+module.exports = { getAddBook, postBook, getUserBooks, getEditBook, updateUserBook, deleteUserBook, getBookDetails, bookStatus }
