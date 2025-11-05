@@ -29,6 +29,10 @@ const bookSchema = mongoose.Schema({
         type:String,
         require:true
     },
+    isPublic:{
+        type:Boolean,
+        default:true
+    },
     userId:{
         type: mongoose.Schema.Types.ObjectId,
         ref:'User'

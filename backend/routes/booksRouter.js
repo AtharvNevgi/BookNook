@@ -17,6 +17,6 @@ booksRouter.delete("/delete/:id", deleteUserBook);
 
 booksRouter.get("/details/:id", getBookDetails);
 
-booksRouter.get("/myBooks/:status", bookStatus)
+booksRouter.patch("/myBooks/:status", bookStatus)
 
 module.exports = {booksRouter}

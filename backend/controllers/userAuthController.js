@@ -81,7 +81,7 @@ const getUserDashboard = async(req, res) => {
     try{
         const user = await User.findById(req.user.id);
         // const book = await Book.find({userId : req.user.id});
-        const book = await Book.find();
+        const book = await Book.find({isPublic:true});
         res.render("dashboard", {user, book});
     }
     catch(err){
