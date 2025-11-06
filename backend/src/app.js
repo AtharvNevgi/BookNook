@@ -1,5 +1,6 @@
 const express = require("express");
 require("../config/db");
+require("../config/cloudinary");
 const path = require("path");
 const ejs = require("ejs")
 const methodOverride  = require("method-override");
@@ -7,7 +8,6 @@ const port = process.env.PORT || 3000;
 require("dotenv").config({quiet:true});
 const cookieParser = require("cookie-parser");
 const app = express();
-
 // routes
 const {authRouter} = require("../routes/userAuthRouter");
 const {adminRouter} = require("../routes/adminAuthRouter");

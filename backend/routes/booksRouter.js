@@ -1,11 +1,12 @@
 const express = require("express");
+const upload = require("../config/multer");
 const auth = require("../middleware/userAuth");
 const {getAddBook, postBook, getUserBooks, getEditBook, updateUserBook, deleteUserBook, getBookDetails, bookStatus} = require("../controllers/bookAuthController");
 const booksRouter = express.Router();
 
 booksRouter.get("/addBook",  getAddBook);
 
-booksRouter.post("/addBook/submit", postBook);
+booksRouter.post("/addBook/submit", upload.single("image"), postBook);
 
 booksRouter.get("/myBooks", getUserBooks);
 

@@ -7,7 +7,7 @@ const getAddBook = (req, res) => {
 
 const postBook = async (req, res) => {
     try {
-        // const user = await User.findById(req.user.id)
+        const user = await User.findById(req.image)
         // console.log(user.id)
         const addBooks = new Books({
             title: req.body.title,
@@ -16,7 +16,7 @@ const postBook = async (req, res) => {
             description: req.body.description,
             condition: req.body.condition,
             category: req.body.category,
-            image: req.body.image,
+            image: req.file.path,
             userId: req.user.id
         })
         const booksAdded = await addBooks.save();
