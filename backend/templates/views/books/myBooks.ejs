@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Books | BookNook</title>
+  <style>
+    .form-check input, label:hover{
+      cursor: pointer;
+    }
+  </style>
   <%- include('../../partials/header')%>
 </head>
 <body class="bg-light">
@@ -28,14 +33,11 @@
               <div class="card-body d-flex flex-column">
                 <div class="d-flex justify-content-between">
                   <h5 class="card-title flex-column"><%= book.title %></h5>
-                  
-                      <div class="form-check form-switch me-3">
-                        <input class="form-check-input" type="checkbox" role="switch" id="switchCheck_<%= book._id %>"
-                        <%= book.isPublic ? "checked" : "" %> onchange="changeInput('<%= book._id %>', this.checked)">
-                      <label class="form-check-label" for="switchCheck_<%= book._id %>"><%= book.isPublic ? "Public" : "Private" %></label>
-
-                    </div>
-                  
+                  <div class="form-check form-switch me-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheck_<%= book._id %>"
+                    <%= book.isPublic ? "checked" : "" %> onchange="changeInput('<%= book._id %>', this.checked)">
+                    <label class="form-check-label" for="switchCheck_<%= book._id %>"><%= book.isPublic ? "Public" : "Private" %></label>
+                  </div>
                 </div>
                 <p class="card-text text-muted small mb-1"><strong>Author:</strong> <%= book.author %></p>
                 <p class="card-text text-muted small"><strong>Condition:</strong> <%= book.condition %></p>
