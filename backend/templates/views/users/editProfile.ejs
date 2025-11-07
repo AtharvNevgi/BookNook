@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile | BookNook</title>
+  <%- include('../../partials/header') %>
+  <style>
+    .container {
+      height: auto;
+      min-height: 77vh;
+    }
+    input, select {
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  
+  <!-- Navbar -->
+  <%- include('../../partials/loggedIn/navbar') %>
+
+  <!-- Profile Section -->
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <!-- Profile Edit Form -->
+        <form action="/user/profile/edit?_method=PATCH" method="POST">
+          <div class="card shadow-sm p-4">
+            <div class="d-flex align-items-center mb-4">
+              <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile"
+                class="rounded-circle me-3" width="100" height="100">
+              <div>
+                <h4 class="mb-0">Edit Profile</h4>
+                <p class="text-muted mb-0">Update your information below.</p>
+              </div>
+            </div>
+
+            <!-- Basic Info -->
+            <h5 class="fw-bold border-bottom pb-2">Basic Information</h5>
+            <div class="row mt-3">
+              <div class="col-md-6 mb-3">
+                <label for="firstname" class="form-label"><strong>First Name</strong></label>
+                <input type="text" class="form-control" id="firstname" name="firstname" value="<%= user.firstname %>" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastname" class="form-label"><strong>Last Name</strong></label>
+                <input type="text" class="form-control" id="lastname" name="lastname" value="<%= user.lastname %>" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="gender" class="form-label"><strong>Gender</strong></label>
+                <select class="form-select" id="gender" name="gender" required>
+                  <option value="male" <%= user.gender === 'male' ? 'selected' : '' %>>Male</option>
+                  <option value="female" <%= user.gender === 'female' ? 'selected' : '' %>>Female</option>
+                  <option value="other" <%= user.gender === 'other' ? 'selected' : '' %>>Other</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="age" class="form-label"><strong>Age</strong></label>
+                <input type="number" class="form-control" id="age" name="age" value="<%= user.age %>" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="phone" class="form-label"><strong>Phone</strong></label>
+                <input type="tel" class="form-control" id="phone" name="phone" value="<%= user.phone %>" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="email" class="form-label"><strong>Email</strong></label>
+                <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" required readonly>
+                <small class="text-muted">Email can’t be changed</small>
+              </div>
+            </div>
+
+            <!-- Change Password (Optional) -->
+            <h5 class="fw-bold border-bottom pb-2 mt-4">Change Password</h5>
+            <div class="row mt-3">
+              <div class="col-md-6 mb-3">
+                <label for="password" class="form-label"><strong>New Password</strong></label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Leave blank to keep current">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="confirmPassword" class="form-label"><strong>Confirm Password</strong></label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm new password">
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-end mt-4">
+              <a href="/user/profile" class="btn btn-outline-danger me-2">Cancel</a>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <%- include('../../partials/footer') %>
+</body>
+</html>

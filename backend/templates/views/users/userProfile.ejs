@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Profile | BookNook</title>
   <%- include('../../partials/header')%>
-
+  <style>
+        .container{
+            height: 77vh;
+        }
+    </style>
 </head>
 <body class="bg-light">
   
@@ -61,7 +65,7 @@
           <!-- Buttons -->
           <div class="d-flex justify-content-end mt-4">
             <a href="/books/addBook" class="btn btn-primary me-2">+ Add New Book</a>
-            <a href="/profile/edit" class="btn btn-outline-secondary">Edit Profile</a>
+            <a href="/user/profile/edit" class="btn btn-outline-secondary">Edit Profile</a>
           </div>
         </div>
       </div>

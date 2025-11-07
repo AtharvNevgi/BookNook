@@ -101,10 +101,36 @@ const getUserProfile = async(req, res) => {
     }
 }
 
+const getEditUserProfile = async(req, res) => {
+    try{
+        const user = await User.findById(req.user.id);
+        res.render("users/editProfile", {user});
+    }
+    catch(err){
+        res.status(500).send(err);
+    }
+}
+
+const updateUserProfile = async(req, res) => {
+    try{
+        const _id = req.user.id;
+        const user = await User.findById(_id);
+        if(req.body.password === '' && req.body.confirmPassword === ''){
+            req.body.password = user.password
+        }
+        const updateUserProfile = await User.findByIdAndUpdate(_id, req.body, {new:true});
+        // console.log(user.password);
+        res.redirect("/user/profile");
+    }
+    catch(err){
+        res.status(500).send(err);
+    }
+}
+
 const getUserLogout = (req, res) => {
     res.clearCookie("token");
     res.redirect("/user/userlogin");
 }
 
 
-module.exports = {getUserlogin, getUserRegister, postUserRegister, postUserLogin, getUserDashboard, getUserProfile, getUserLogout}
+module.exports = {getUserlogin, getUserRegister, postUserRegister, postUserLogin, getUserDashboard, getUserProfile, getUserLogout, getEditUserProfile, updateUserProfile}
