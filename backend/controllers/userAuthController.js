@@ -114,11 +114,16 @@ const getEditUserProfile = async(req, res) => {
 const updateUserProfile = async(req, res) => {
     try{
         const _id = req.user.id;
+        const updates = req.body;
+
         const user = await User.findById(_id);
-        if(req.body.password === '' && req.body.confirmPassword === ''){
-            req.body.password = user.password
+        if(updates.password === '' && updates.confirmPassword === ''){
+            updates.password = user.password
         }
-        const updateUserProfile = await User.findByIdAndUpdate(_id, req.body, {new:true});
+        if(updates.password){
+            updates.password = await bcrypt.hash(updates.password, 10);
+        }
+        const updateUserProfile = await User.findByIdAndUpdate(_id, updates, {new:true});
         // console.log(user.password);
         res.redirect("/user/profile");
     }
