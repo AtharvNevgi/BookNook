@@ -14,6 +14,9 @@
   <!-- Edit Book Form -->
   <div class="container my-5">
     <div class="card shadow-sm p-4" style="max-width: 700px; margin: auto;">
+      <a href="/books/myBooks">
+           <i class="bi bi-arrow-left"></i>
+      </a>
       <h3 class="text-center mb-4">Edit Book Details</h3>
 
       <form action="/books/edit/<%- book._id %>?_method=PATCH" method="POST">

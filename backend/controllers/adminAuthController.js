@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const User = require("../models/userModel")
+const User = require("../models/userModel");
+const Books = require("../models/booksModel");
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
@@ -53,8 +54,10 @@ const postAdminlogin = async (req, res) => {
 
 const getAdminDashboard = async (req, res) => {
     try{
-        const user = await User.findById(req.user.id);
-        res.render("admin/adminDashboard", {user: user.firstname});
+        const user = await User.find();
+        const book = await Books.find().populate("userId");
+        // console.log("books data:", book)
+        res.render("admin/adminDashboard", {user, book});
     }
     catch(err){
         console.log(err);
