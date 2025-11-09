@@ -92,7 +92,7 @@ const bookStatus = async (req, res) => {
     try{
         const status = req.params.status;
         const {isPublic} = req.body
-        console.log(status);
+        // console.log(status);
         const data = await Books.findByIdAndUpdate(status, {isPublic});
         res.send(data);
         // res.redirect("/books/myBooks");
