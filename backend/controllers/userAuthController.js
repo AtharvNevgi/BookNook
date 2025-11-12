@@ -93,7 +93,9 @@ const getUserDashboard = async(req, res) => {
 const getUserProfile = async(req, res) => {
     try{
         const user = await User.findById(req.user.id);
-        res.render("users/userProfile",{user});
+        const addedBooks = await Book.find({userId:req.user.id});
+        console.log(addedBooks.length);
+        res.render("users/userProfile",{user, addedBooks});
     }
     catch(err){
         console.log(err);
