@@ -4,19 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include("../partials/header")%>
-    <title>Document</title>
+    <title>BookNook- Your Online Book Store</title>
     <style>
-        .bannerImg{
-            width: 70%;
-            height: 70%;
+        .container{
+            width: 120%;
+            height: 100vh;
+            background-image: url('/img/BookNook.jpeg');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 <body>
     <%- include("../partials/navbar")%>
-    <h1>Welcome to Home Page</h1>
     <div class="container">
-        <img src="/img/BookNook.jpeg" alt="img" class="bannerImg"/>
+        <!-- <h1>Welcome to Home Page</h1> -->
     </div>
     <%- include('../partials/footer')%>
 </body>
