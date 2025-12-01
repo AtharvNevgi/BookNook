@@ -1,0 +1,13 @@
+.home-container {
+  width: 100%;
+  height: 100vh;
+  background-image: url("/img/BookNook.jpeg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
